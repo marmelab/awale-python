@@ -10,7 +10,11 @@ def start():
     currentPlayer = 1 #Constants ?
 
     position = AskPosition(board, currentPlayer)
-    print("Player ({}) play {}.".format(currentPlayer, position))
+    if position < 0:
+        print("Invalid position")
+
+    play(currentPlayer, position)
+    currentPlayer = switchPlayer(currentPlayer)
 
 
 def AskPosition(board, cPlayer):
@@ -27,3 +31,10 @@ def AskPosition(board, cPlayer):
             position = -1
 
     return position
+
+def play(cPlayer, position):
+    print("Player ({}) play {}.".format(cPlayer, position))
+
+
+def switchPlayer(cPlayer):
+    return cPlayer == 1 if 2 else 1
