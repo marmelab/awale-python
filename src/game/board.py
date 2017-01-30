@@ -1,9 +1,14 @@
 from .constants import CONST_PEBBLE_COUNT
 
 def newBoard(size):
+    if size is None or not isEven(size):
+        raise ValueError("Board x/y size must be even.")
+
     # Create a new board, simple array
     return [CONST_PEBBLE_COUNT] * size
 
+def isEven(x):
+    return x % 2 == 0
 
 def render(board):
     renderStr = ''
