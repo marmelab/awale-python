@@ -1,0 +1,10 @@
+# https://travis-ci.com/marmelab/awale-python/
+
+language: python
+
+python:
+  - "3.5"
+
+branches:
+  only:
+    - master
