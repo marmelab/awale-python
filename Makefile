@@ -1,8 +1,9 @@
-.PHONY: install run
+.PHONY: install run test lint
 
 BIN := docker run \
     -it \
     --rm \
+    -v "/src" \
     awale-python
 
 # Initialization ===============================================================
@@ -13,4 +14,14 @@ install:
 # Run ===============================================================
 
 run:
-	$(BIN) python src/launcher.py
+	$(BIN) python3 src/launcher.py
+
+# Tests ===============================================================
+
+test:
+	$(BIN) python3 -m unittest discover --v
+
+# Lint ===============================================================
+
+lint:
+	$(BIN) pep8 .
