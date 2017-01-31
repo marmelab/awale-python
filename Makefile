@@ -1,16 +1,16 @@
-.PHONY: run
+.PHONY: install run
+
+BIN := docker run \
+			-it \
+			--rm \
+			awale-python
 
 # Initialization ===============================================================
 
 install:
+	docker build --tag=awale-python .
 
 # Run ===============================================================
 
-#docker run -it --rm --name awale -v "$PWD":/home/max/app/awale -w /home/max/app/awale python:3 python src/launcher.py
-
 run:
-	docker run -it --rm \
-		-v "$(PWD)":/home/max/app/awale \
-		-w /home/max/app/awale \
-		python:3 \
-	 	python src/launcher.py
+	$(BIN) python src/launcher.py
