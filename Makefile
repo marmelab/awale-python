@@ -19,7 +19,7 @@ run:
 # Tests ===============================================================
 
 test:
-	$(BIN) python3 -m unittest discover
+	$(BIN) python3 -m unittest discover --v
 
 # Lint ===============================================================
 
