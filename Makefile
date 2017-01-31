@@ -1,10 +1,10 @@
 .PHONY: install run test lint
 
 BIN := docker run \
-			-it \
-			--rm \
-			-v "/src" \
-			awale-python
+    -it \
+    --rm \
+    -v "/src" \
+    awale-python
 
 # Initialization ===============================================================
 
