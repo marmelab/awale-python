@@ -1,4 +1,5 @@
-from .board import newBoard, render, canPlay
+from .board import newBoard, canPlay
+from .renderer import render
 
 def start():
     print("\n######### GAME STARTED ############\n")
