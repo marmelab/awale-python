@@ -1,9 +1,9 @@
 .PHONY: install run
 
 BIN := docker run \
-			-it \
-			--rm \
-			awale-python
+    -it \
+    --rm \
+    awale-python
 
 # Initialization ===============================================================
 

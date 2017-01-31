@@ -1,44 +1,43 @@
-from .board import newBoard, render, canPlay
+from .board import create_board, can_player_apply_position
+from .renderer import render
 
 def start():
     print("\n######### GAME STARTED ############\n")
 
-
-    board = newBoard(12) #Constants ?
+    board = create_board(12) #Constants ?
     print(render(board))
 
-    currentPlayer = 1 #Constants ?
+    current_player = 1 #Constants ?
 
-    position = askPosition(board, currentPlayer)
+    position = ask_position(board, current_player)
     if position < 0:
         print("Invalid position")
 
-    play(board, currentPlayer, position)
-    currentPlayer = switchPlayer(currentPlayer)
+    play_turn(board, current_player, position)
+    current_player = switch_player(current_player)
 
-
-def askPosition(board, cPlayer):
+def ask_position(board, current_player):
 
     try:
-        position = int(input("Player ({0}), which position : ".format(cPlayer)))
+        position = int(input("Player ({0}), which position: ".format(current_player)))
     except ValueError:
         position =  -1
 
-    while not canPlay(cPlayer, board, position):
+    while not can_player_apply_position(current_player, board, position):
         try:
-            position = int(input("Wrong move, play again which position : "))
+            position = int(input("Wrong move, play again which position: "))
         except ValueError:
             position = -1
 
     return position
 
-def play(board, cPlayer, position):
-    print("Player ({}) play {}.".format(cPlayer, position))
-    endPosition = dealPosition(board, position)
+def play_turn(board, current_player, position):
+    print("Player ({}) play {}.".format(current_player, position))
+    end_position = deal_position(board, position)
     print(render(board))
-    print(endPosition)
+    print(end_position)
 
-def dealPosition(board, position):
+def deal_position(board, position):
     seeds = board[position]
     board[position] = 0
     i = position
@@ -51,5 +50,5 @@ def dealPosition(board, position):
 
     return i % 12
 
-def switchPlayer(cPlayer):
-    return 2 if cPlayer == 1 else 1
+def switch_player(current_player):
+    return 2 if current_player == 1 else 1

@@ -1,10 +1,9 @@
 import unittest
-from ..game import switchPlayer, askPosition
+from ..game import switch_player
 
 
 class TestGame(unittest.TestCase):
 
     def test_switchPlayer(self):
-        self.assertEqual(switchPlayer(1), 2)
-        self.assertEqual(switchPlayer(2), 1)
-
+        self.assertEqual(switch_player(1), 2)
+        self.assertEqual(switch_player(2), 1)
