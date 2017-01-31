@@ -37,4 +37,4 @@ def displayRow(board, startIndex = 0):
     return renderStr
 
 def canPlay(player, board, position):
-   return True
+    return True
