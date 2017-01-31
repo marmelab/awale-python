@@ -1,10 +1,10 @@
 import unittest
-from ..board import newBoard, isEven, displayRow
+from ..board import newBoard, displayRow
 from ..constants import CONST_PEBBLE_COUNT
 
 class TestBoard(unittest.TestCase):
 
-    def test_defaultNewBord(self):
+    def test_defaultNewBoard(self):
         self.assertEqual(newBoard(2), [CONST_PEBBLE_COUNT, CONST_PEBBLE_COUNT])
         self.assertEqual(newBoard(12), [CONST_PEBBLE_COUNT] * 12)
 
@@ -13,10 +13,6 @@ class TestBoard(unittest.TestCase):
             newBoard(None)
         with self.assertRaises(ValueError):
             newBoard(13)
-
-    def test_isEven(self):
-        self.assertEqual(isEven(1), False)
-        self.assertEqual(isEven(2), True)
 
     def test_displayRow(self):
         board = newBoard(12)

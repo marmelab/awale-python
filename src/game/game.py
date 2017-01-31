@@ -20,7 +20,7 @@ def start():
 def askPosition(board, cPlayer):
 
     try:
-        position = int(input("Player ({0}), which position : ".format(cPlayer)))
+        position = int(input("Player ({0}), which position: ".format(cPlayer)))
     except ValueError:
         position =  -1
 
