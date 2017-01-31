@@ -3,6 +3,7 @@
 BIN := docker run \
 			-it \
 			--rm \
+			-v "/src" \
 			awale-python
 
 # Initialization ===============================================================
@@ -13,12 +14,12 @@ install:
 # Run ===============================================================
 
 run:
-	$(BIN) python src/launcher.py
+	$(BIN) python3 src/launcher.py
 
 # Tests ===============================================================
 
 test:
-	$(BIN) python -m unittest discover
+	$(BIN) python3 -m unittest discover
 
 # Lint ===============================================================
 
