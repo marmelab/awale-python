@@ -1,24 +1,24 @@
 def render(board):
-    renderStr = ''
+    render_str = ''
 
     half = int(len(board) / 2)
 
     #Board top
-    renderStr += displayRow(board[:half])
+    render_str += display_row(board[:half])
 
-    renderStr += '\n'
+    render_str += '\n'
 
     #Board bottom
-    renderStr += displayRow(board[half:], half)
+    render_str += display_row(board[half:], half)
 
-    return renderStr
+    return render_str
 
-def displayRow(board, startIndex = 0):
+def display_row(board, start_index = 0):
     #Display with index
 
-    renderStr = ''
+    render_str = ''
 
     for index, row in enumerate(board):
-        renderStr += str(index + 1 + startIndex) +  '(' + str(row) + ') '
+        render_str += '{}({}) '.format(index + 1 + start_index, row)
 
-    return renderStr
+    return render_str
