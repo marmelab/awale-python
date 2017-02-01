@@ -1,13 +1,13 @@
 from .board import create_board, check_winner, game_state, GAME_CONTINUE, \
                    deal_position, pick
 from .renderer import render
-from .constants import CONST_PIT_COUNT
+from .constants import PIT_COUNT
 
 
 def start(player_one, player_two):
     print("\n######### GAME STARTED ############\n")
 
-    board = create_board(CONST_PIT_COUNT)
+    board = create_board(PIT_COUNT)
     print(render(board))
 
     players = [
@@ -31,7 +31,7 @@ def start(player_one, player_two):
 
 
 def get_complement_properties_player(number, player=None):
-    half_pit = int(CONST_PIT_COUNT / 2)
+    half_pit = int(PIT_COUNT / 2)
     return {
         'number': number,
         'min_position': number * half_pit,

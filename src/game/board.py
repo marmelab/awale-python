@@ -1,5 +1,5 @@
 import sys
-from .constants import CONST_PEBBLE_COUNT, CONST_PIT_COUNT
+from .constants import PEBBLE_COUNT, PIT_COUNT
 
 GAME_NO_WINNER = -1
 GAME_CONTINUE = -2
@@ -12,7 +12,7 @@ def create_board(size):
         raise AttributeError("Board size size must be even.")
 
     # Create a new board, simple array
-    return [CONST_PEBBLE_COUNT] * size
+    return [PEBBLE_COUNT] * size
 
 
 def can_player_apply_position(player, board, position):
@@ -35,11 +35,11 @@ def deal_position(board, position):
 
     while seeds > 0:
         i += 1
-        if i % CONST_PIT_COUNT != position:
-            board[i % CONST_PIT_COUNT] += 1
+        if i % PIT_COUNT != position:
+            board[i % PIT_COUNT] += 1
             seeds -= 1
 
-    return i % CONST_PIT_COUNT
+    return i % PIT_COUNT
 
 
 def pick(player, board, position):
