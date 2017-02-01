@@ -15,7 +15,7 @@ def get_complement_property_player(number):
 def start(type_player):
     print("\n######### GAME STARTED ############\n")
 
-    board = create_board(12)  # Constants ?
+    board = create_board(12)
     print(render(board))
 
     player = get_complement_property_player(0)
