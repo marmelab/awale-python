@@ -2,7 +2,7 @@ from .board import create_board, can_player_apply_position
 from .renderer import render
 
 
-def create_player(number):
+def get_complement_property_player(number):
         return {
             'number': number,
             'min_position': number * 6,
@@ -18,7 +18,7 @@ def start(type_player):
     board = create_board(12)  # Constants ?
     print(render(board))
 
-    player = create_player(0)
+    player = get_complement_property_player(0)
 
     current_player = player
 
