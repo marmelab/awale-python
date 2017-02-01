@@ -1,14 +1,14 @@
 import unittest
-from ..game import switch_player, get_complement_properties_player
+from ..game import get_complement_properties_player
+
 
 class TestGame(unittest.TestCase):
 
-    def test_switch_player(self):
+    def test_get_complement_properties_player(self):
+        player_one = get_complement_properties_player(0)
+        player_two = get_complement_properties_player(1)
 
-        player = get_complement_properties_player(0)
-        switch_player(player)
-        self.assertEqual(player['number'], 1)
-
-        player = get_complement_properties_player(1)
-        switch_player(player)
-        self.assertEqual(player['number'], 0)
+        self.assertEqual(player_one['min_position'], 0)
+        self.assertEqual(player_two['min_position'], 6)
+        self.assertEqual(player_one['max_position'], 6)
+        self.assertEqual(player_two['max_position'], 12)

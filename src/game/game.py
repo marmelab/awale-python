@@ -2,6 +2,7 @@ from .board import create_board, check_winner, winner
 from .renderer import render
 from .constants import CONST_PIT_COUNT
 
+players = []
 
 def start(player_one, player_two):
     print("\n######### GAME STARTED ############\n")
@@ -9,12 +10,16 @@ def start(player_one, player_two):
     board = create_board(CONST_PIT_COUNT)
     print(render(board))
 
-    player_one = get_complement_properties_player(0, player_one)
-    player_two = get_complement_properties_player(1, player_two)
+    players = [
+        get_complement_properties_player(0, player_one),
+        get_complement_properties_player(1, player_two)
+      ]
 
-    current_player = player_one
+    number_current_player = 0
 
     while winner == -2:
+        current_player = players[number_current_player]
+
         position = current_player['player'].get_position(board, current_player)
         if position < 0:
             print("Invalid position")
@@ -22,7 +27,7 @@ def start(player_one, player_two):
 
         play_turn(current_player, board, position)
         check_winner(current_player, board, position)
-        switch_player(current_player)
+        number_current_player = 1 - number_current_player
 
 
 def get_complement_properties_player(number, player=None):
@@ -55,7 +60,3 @@ def deal_position(board, position):
             seeds -= 1
 
     return i % 12
-
-
-def switch_player(current_player):
-    current_player['number'] = 0 if current_player['number'] == 1 else 1
