@@ -7,10 +7,14 @@ from ..constants import CONST_PEBBLE_COUNT, CONST_PIT_COUNT
 class TestBoard(unittest.TestCase):
 
     def test_default_new_board(self):
-        self.assertEqual(create_board(2),
-                         [CONST_PEBBLE_COUNT, CONST_PEBBLE_COUNT])
-        self.assertEqual(create_board(CONST_PIT_COUNT), (
-            [CONST_PEBBLE_COUNT] * CONST_PIT_COUNT))
+        self.assertEqual(
+            create_board(2),
+            [CONST_PEBBLE_COUNT, CONST_PEBBLE_COUNT]
+        )
+        self.assertEqual(
+            create_board(CONST_PIT_COUNT),
+            [CONST_PEBBLE_COUNT] * CONST_PIT_COUNT
+        )
 
     def test_null_new_bord(self):
         with self.assertRaises(AttributeError):
@@ -27,19 +31,25 @@ class TestBoard(unittest.TestCase):
         self.assertEqual(can_player_apply_position(player_two, board, 6), True)
         self.assertEqual(
             can_player_apply_position(player_one, board, 6),
-            False)
+            False
+        )
         self.assertEqual(
             can_player_apply_position(player_two, board, 0),
-            False)
+            False
+        )
         self.assertEqual(
             can_player_apply_position(player_one, board, 5),
-            True)
+            True
+        )
         self.assertEqual(
             can_player_apply_position(player_two, board, 11),
-            True)
+            True
+        )
         self.assertEqual(
             can_player_apply_position(player_one, board, 11),
-            False)
+            False
+        )
         self.assertEqual(
             can_player_apply_position(player_two, board, 5),
-            False)
+            False
+        )

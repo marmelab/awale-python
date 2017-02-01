@@ -1,3 +1,4 @@
+import sys
 from .constants import CONST_PEBBLE_COUNT
 
 # Take 2 if party is continue, -1 if equals or number of the player
@@ -24,4 +25,4 @@ def can_player_apply_position(player, board, position):
 
 
 def check_winner(player, board, position):
-    exit
+    sys.exit(0)  # todo futur PR
