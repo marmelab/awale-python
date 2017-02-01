@@ -4,7 +4,7 @@ from ..game import switch_player, create_player
 class TestGame(unittest.TestCase):
 
 
-    def test_switchPlayer(self):
+    def test_switch_player(self):
 
         player = create_player(0)
         switch_player(player)
