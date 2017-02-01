@@ -3,18 +3,19 @@ def render(board):
 
     half = int(len(board) / 2)
 
-    #Board top
+    # Board top
     render_str += display_row(board[:half])
 
     render_str += '\n'
 
-    #Board bottom
+    # Board bottom
     render_str += display_row(board[half:], half)
 
     return render_str
 
-def display_row(board, start_index = 0):
-    #Display with index
+
+def display_row(board, start_index=0):
+    # Display with index
 
     render_str = ''
 
