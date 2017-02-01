@@ -1,8 +1,10 @@
 import sys
 from .constants import CONST_PEBBLE_COUNT
 
-# Take 2 if party is continue, -1 if equals or number of the player
-winner = -2
+GAME_NO_WINNER = -1
+GAME_CONTINUE = -2
+
+winner = GAME_CONTINUE
 
 
 def create_board(size):
