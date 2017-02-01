@@ -1,4 +1,4 @@
-from .board import create_board, check_winner, winner, GAME_CONTINUE, \
+from .board import create_board, check_winner, state_game, GAME_CONTINUE, \
                    deal_position, pick
 from .renderer import render
 from .constants import CONST_PIT_COUNT
@@ -17,7 +17,7 @@ def start(player_one, player_two):
 
     number_current_player = 0
 
-    while winner == GAME_CONTINUE:
+    while state_game == GAME_CONTINUE:
         current_player = players[number_current_player]
 
         position = current_player['player'].get_position(board, current_player)

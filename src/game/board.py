@@ -4,7 +4,7 @@ from .constants import CONST_PEBBLE_COUNT
 GAME_NO_WINNER = -1
 GAME_CONTINUE = -2
 
-winner = GAME_CONTINUE
+state_game = GAME_CONTINUE
 
 
 def create_board(size):
