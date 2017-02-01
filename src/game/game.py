@@ -22,7 +22,7 @@ def start(type_player):
 
     current_player = player
 
-    position = type_player.ask_position(board, current_player)
+    position = type_player.get_position(board, current_player)
     if position < 0:
         print("Invalid position")
 

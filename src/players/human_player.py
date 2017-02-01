@@ -1,7 +1,7 @@
 from game.board import can_player_apply_position
 
 
-def ask_position(board, current_player):
+def get_position(board, current_player):
 
     try:
         position = int(input("Player ({0}), which position: "
