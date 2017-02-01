@@ -9,13 +9,13 @@ class TestRenderer(unittest.TestCase):
         board = create_board(12)
 
         self.assertEqual(display_row(board), ' '.join([
-            '1(4) 2(4) 3(4) 4(4) 5(4)',
-            '6(4) 7(4) 8(4) 9(4) 10(4) 11(4) 12(4) ',
+            '0(4) 1(4) 2(4) 3(4) 4(4) 5(4)',
+            '6(4) 7(4) 8(4) 9(4) 10(4) 11(4) ',
         ]))
 
         board = create_board(6)
 
         self.assertEqual(display_row(board, 1), ' '.join([
-            '2(4) 3(4) 4(4) 5(4)',
-            '6(4) 7(4) ',
+            '1(4) 2(4) 3(4)',
+            '4(4) 5(4) 6(4) ',
         ]))
