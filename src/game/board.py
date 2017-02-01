@@ -1,5 +1,5 @@
 import sys
-from .constants import CONST_PEBBLE_COUNT
+from .constants import CONST_PEBBLE_COUNT, CONST_PIT_COUNT
 
 GAME_NO_WINNER = -1
 GAME_CONTINUE = -2
@@ -35,11 +35,11 @@ def deal_position(board, position):
 
     while seeds > 0:
         i += 1
-        if i % 12 != position:
-            board[i % 12] += 1
+        if i % CONST_PIT_COUNT != position:
+            board[i % CONST_PIT_COUNT] += 1
             seeds -= 1
 
-    return i % 12
+    return i % CONST_PIT_COUNT
 
 
 def pick(player, board, position):
