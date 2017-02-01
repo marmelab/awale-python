@@ -2,7 +2,6 @@ from .board import create_board, check_winner, winner
 from .renderer import render
 from .constants import CONST_PIT_COUNT
 
-players = []
 
 def start(player_one, player_two):
     print("\n######### GAME STARTED ############\n")
