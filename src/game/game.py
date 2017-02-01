@@ -1,5 +1,4 @@
-from .board import create_board, can_player_apply_position, \
-                   check_winner, winner
+from .board import create_board, check_winner, winner
 from .renderer import render
 from .constants import CONST_PIT_COUNT
 
