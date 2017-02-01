@@ -28,5 +28,35 @@ def can_player_apply_position(player, board, position):
     return move_possible
 
 
+def deal_position(board, position):
+    seeds = board[position]
+    board[position] = 0
+    i = position
+
+    while seeds > 0:
+        i += 1
+        if i % 12 != position:
+            board[i % 12] += 1
+            seeds -= 1
+
+    return i % 12
+
+
+def pick(player, board, position):
+    score = [0] * 2
+    end_position = deal_position(board, position)
+
+    def is_pick_possible(x):
+        return (player['min_pick'] <= end_position < player['max_pick']
+                and 2 <= board[end_position] <= 3)
+
+    while is_pick_possible(end_position):
+        score[player['number']] += board[end_position]
+        board[end_position] = 0
+        end_position -= 1
+
+    return board, score
+
+
 def check_winner(player, board, position):
     sys.exit(0)  # todo futur PR

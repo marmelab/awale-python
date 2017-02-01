@@ -1,4 +1,5 @@
-from .board import create_board, check_winner, winner, GAME_CONTINUE
+from .board import create_board, check_winner, winner, GAME_CONTINUE, \
+                   deal_position
 from .renderer import render
 from .constants import CONST_PIT_COUNT
 
@@ -45,17 +46,3 @@ def play_turn(current_player, board, position):
     print("Player ({}) play {}.".format(current_player['number'], position))
     end_position = deal_position(board, position)
     print(render(board))
-
-
-def deal_position(board, position):
-    seeds = board[position]
-    board[position] = 0
-    i = position
-
-    while seeds > 0:
-        i += 1
-        if i % 12 != position:
-            board[i % 12] += 1
-            seeds -= 1
-
-    return i % 12
