@@ -20,8 +20,7 @@ def can_player_apply_position(player, board, position):
 
     if sum(board[player['min_pick']:player['max_pick']]) == 0:
         return move_possible  # todo add condition on starve and feed
-    else:
-        return move_possible
+    return move_possible
 
 
 def check_winner(player, board, position):
