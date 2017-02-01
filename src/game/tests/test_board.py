@@ -1,6 +1,6 @@
 import unittest
 from ..board import create_board, can_player_apply_position
-from ..game import create_player
+from ..game import get_complement_properties_player
 from ..constants import CONST_PEBBLE_COUNT, CONST_PIT_COUNT
 
 
@@ -19,8 +19,8 @@ class TestBoard(unittest.TestCase):
             create_board(13)
 
     def test_can_player_apply_position(self):
-        player_one = create_player(0)
-        player_two = create_player(1)
+        player_one = get_complement_properties_player(0)
+        player_two = get_complement_properties_player(1)
         board = create_board(CONST_PIT_COUNT)
 
         self.assertEqual(can_player_apply_position(player_one, board, 0), True)
