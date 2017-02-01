@@ -58,5 +58,13 @@ def pick(player, board, position):
     return board, score
 
 
+def will_starve_player(current_player, board, position):
+    pick(current_player, board, position)
+    min_pick = current_player['min_pick']
+    max_pick = current_player['max_pick']
+    starving = (sum(board[min_pick:max_pick]) == 0)
+    return starving
+
+
 def check_winner(player, board, position):
     sys.exit(0)  # todo futur PR
