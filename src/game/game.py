@@ -35,7 +35,6 @@ def start(player_one, player_two):
         print(render(board))
         print(render_score(score))
 
-    print("Result: " + score)
     print("Winner player: " + game_state)
 
 
