@@ -31,5 +31,5 @@ def display_board_bottom(board, half):
 
 
 def render_score(score):
-    score_str = "Score:\tPlayer (0): {}\tplayer (1): {}\n"
+    score_str = "Score:\tPlayer 1: {}\tPlayer (2): {}\n"
     return score_str.format(score[0], score[1])
