@@ -24,8 +24,9 @@ def can_player_apply_position(player, board, position):
                           player['max_position'])
 
     move_possible = is_player_can_move and not is_empty_pit
+    sum_pebble = sum(board[player['min_pick']:player['max_pick']])
 
-    if sum(board[player['min_pick']:player['max_pick']]) == 0:
+    if sum_pebble == 0:
         is_starving = will_starve_player(player, board, position, None)
         can_feed_player = can_feed(player, board, None)
         return move_possible and (not is_starving or not can_feed_player)
