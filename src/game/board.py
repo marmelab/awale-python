@@ -1,4 +1,3 @@
-import sys
 from .constants import PEBBLE_COUNT, PIT_COUNT
 
 GAME_NO_WINNER = -1
