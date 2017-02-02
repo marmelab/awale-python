@@ -29,13 +29,18 @@ def start(player_one, player_two):
             continue
 
         board, score = play_turn(current_player, board, position, score)
-        score, game_state = check_winner(current_player, board, position,
-                                         game_state, score)
+        score, game_state = check_winner(
+            current_player,
+            board,
+            position,
+            game_state,
+            score
+        )
         number_current_player = 1 - number_current_player
         print(render(board))
         print(render_score(score))
 
-    print("Winner player: " + game_state)
+    print("Winner player: " + str(game_state))
 
 
 def get_complement_properties_player(number, player=None):
