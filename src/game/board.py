@@ -15,7 +15,7 @@ def create_board(size):
 def can_player_apply_position(player, board, position):
     try:
         is_empty_pit = (board[position] == 0)
-    except IndexError:
+    except LookupError:
         return False
 
     is_player_can_move = (player['min_position'] <=
