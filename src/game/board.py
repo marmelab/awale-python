@@ -4,8 +4,6 @@ from .constants import PEBBLE_COUNT, PIT_COUNT
 GAME_NO_WINNER = -1
 GAME_CONTINUE = -2
 
-game_state = GAME_CONTINUE
-
 
 def create_board(size):
     if size is None or size % 2 != 0:
@@ -44,8 +42,7 @@ def deal_position(board, position):
     return i % PIT_COUNT
 
 
-def pick(player, board, position):
-    score = [0] * 2
+def pick(player, board, position, score):
     end_position = deal_position(board, position)
 
     def is_pick_possible(x):
@@ -60,6 +57,7 @@ def pick(player, board, position):
     return board, score
 
 
+<<<<<<< 82a70943e3598505b24fc208825b554e7138f6ef
 def will_starve_player(player, board, position):
     pick(player, board, position)
     min_pick = player['min_pick']
@@ -79,5 +77,18 @@ def can_feed(player, board):
     return not cannot_feed
 
 
-def check_winner(player, board, position):
-    sys.exit(0)  # todo futur PR
+def check_winner(player, board, position, game_state, score):
+    if game_state == GAME_CONTINUE:
+        min_pick = player['min_pick']
+        max_pick = player['max_pick']
+        number_player = player['number']
+        starving = sum(board[min_pick:max_pick]) == 0
+
+        min_score = ((PEBBLE_COUNT * PIT_COUNT) / 2)
+
+        if starving or score[number_player] >= min_score:
+            game_state = number_player
+        elif score[1 - number_player] >= min_score:
+            game_state = 1 - number_player
+
+        return score, game_state

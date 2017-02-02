@@ -94,7 +94,8 @@ class TestBoard(unittest.TestCase):
             new_board, score = pick(
                 board['player'],
                 board['start'],
-                board['position']
+                board['position'],
+                board['score']
             )
             self.assertEqual(new_board, board['end'])
             self.assertEqual(score, board['score'])
