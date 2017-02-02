@@ -35,8 +35,7 @@ def start(player_one, player_two):
 
     print("Result: " + score)
     print("Winner player: " + game_state)
-
-
+    
 
 def get_complement_properties_player(number, player=None):
     half_pit = int(PIT_COUNT / 2)

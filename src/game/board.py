@@ -57,7 +57,6 @@ def pick(player, board, position, score):
     return board, score
 
 
-<<<<<<< 82a70943e3598505b24fc208825b554e7138f6ef
 def will_starve_player(player, board, position):
     pick(player, board, position)
     min_pick = player['min_pick']
