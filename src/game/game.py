@@ -3,8 +3,6 @@ from .board import create_board, check_winner, deal_position, pick, \
 from .renderer import render
 from .constants import PIT_COUNT
 
-game_state = GAME_CONTINUE
-
 
 def start(player_one, player_two):
     print("\n######### GAME STARTED ############\n")
@@ -20,6 +18,7 @@ def start(player_one, player_two):
     number_current_player = 0
 
     score = [0] * 2
+    game_state = GAME_CONTINUE
 
     while game_state == GAME_CONTINUE:
         current_player = players[number_current_player]
@@ -36,6 +35,7 @@ def start(player_one, player_two):
 
     print("Result: " + score)
     print("Winner player: " + game_state)
+
 
 
 def get_complement_properties_player(number, player=None):
