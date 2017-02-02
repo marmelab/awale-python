@@ -3,8 +3,8 @@ from game.board import can_player_apply_position
 
 def get_position(board, current_player):
     try:
-        position = int(input("Player ({0}), which position: "
-                             .format(current_player['number'])))
+        position = int(input("Player ({}), which position: "
+                             .format(current_player['number'] + 1)))
     except ValueError:
         position = -1
 

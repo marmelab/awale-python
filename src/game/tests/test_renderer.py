@@ -1,21 +1,22 @@
 import unittest
 from ..board import create_board
-from ..renderer import display_row
+from ..renderer import display_board_top, display_board_bottom
 
 
 class TestRenderer(unittest.TestCase):
 
-    def test_display_row(self):
-        board = create_board(12)
+    def test_display_board_top(self):
+        board = create_board(6)
+        half = int(len(board) / 2)
 
-        self.assertEqual(display_row(board), ' '.join([
-            '0(4) 1(4) 2(4) 3(4) 4(4) 5(4)',
-            '6(4) 7(4) 8(4) 9(4) 10(4) 11(4) ',
+        self.assertEqual(display_board_top(board, half), ' '.join([
+            '\t5 [4]\t4 [4]\t3 [4]',
         ]))
 
+    def test_display_board_bottom(self):
         board = create_board(6)
+        half = int(len(board) / 2)
 
-        self.assertEqual(display_row(board, 1), ' '.join([
-            '1(4) 2(4) 3(4)',
-            '4(4) 5(4) 6(4) ',
+        self.assertEqual(display_board_bottom(board, half), ' '.join([
+            '\t0 [4]\t1 [4]\t2 [4]',
         ]))

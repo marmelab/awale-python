@@ -1,5 +1,5 @@
 import unittest
-from ..board import create_board, can_player_apply_position, pick
+from ..board import create_board, can_player_apply_position, pick, can_feed
 from ..game import get_complement_properties_player
 from ..constants import PEBBLE_COUNT, PIT_COUNT
 
@@ -94,7 +94,13 @@ class TestBoard(unittest.TestCase):
             new_board, score = pick(
                 board['player'],
                 board['start'],
-                board['position']
+                board['position'],
+                board['score']
             )
             self.assertEqual(new_board, board['end'])
             self.assertEqual(score, board['score'])
+
+    def can_feed(self):
+        player_one = get_complement_properties_player(0)
+        can_feed_player = can_feed(player_one, create_board(12), None)
+        self.assertEqual(can_feed_player, True)
