@@ -66,11 +66,11 @@ def get_complement_properties_player(number, player=None):
 
 
 def play_turn(current_player, board, position, score):
-    starving, board, score = will_starve_player(current_player,
-                                                board,
-                                                position,
-                                                score,
-                                                )
+    starving = will_starve_player(current_player,
+                                  board,
+                                  position,
+                                  score,
+                                  )
 
     if starving:
         deal_position(board, position, score)
