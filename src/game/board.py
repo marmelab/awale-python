@@ -26,7 +26,7 @@ def can_player_apply_position(player, board, position):
     sum_pebble = sum(board[player['min_pick']:player['max_pick']])
 
     if sum_pebble == 0:
-        is_starving, _ = will_starve_player(player, board, position, None)
+        is_starving, *rest = will_starve_player(player, board, position, None)
         can_feed_player = can_feed(player, board, None)
         return move_possible and (not is_starving or not can_feed_player)
     return move_possible
@@ -50,8 +50,8 @@ def pick(player, board, position, score):
     end_position = deal_position(board, position)
 
     def is_pick_possible(x):
-        return (player['min_pick'] <= end_position < player['max_pick']
-                and 2 <= board[end_position] <= 3)
+        return (player['min_pick'] <= end_position < player['max_pick'] and
+                2 <= board[end_position] <= 3)
 
     while is_pick_possible(end_position):
         score[player['number']] += board[end_position]
@@ -75,7 +75,7 @@ def can_feed(player, board, score=None):
     cannot_feed = True
 
     for i in range(min_position, max_position):
-        starving, _ = will_starve_player(player, board, i, score)
+        starving, *rest = will_starve_player(player, board, i, score)
         cannot_feed = cannot_feed and starving
 
     return not cannot_feed
