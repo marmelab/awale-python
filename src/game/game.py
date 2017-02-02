@@ -1,7 +1,8 @@
 from .board import create_board, check_winner, deal_position, pick, \
-                   GAME_CONTINUE, will_starve_player
+                   GAME_CONTINUE, GAME_NO_WINNER, will_starve_player
 from .renderer import render, render_score
 from .constants import PIT_COUNT
+from .exitException import ExitException
 
 
 def start(player_one, player_two):
@@ -19,11 +20,20 @@ def start(player_one, player_two):
 
     score = [0] * 2
     game_state = GAME_CONTINUE
+    position = -1
 
     while game_state == GAME_CONTINUE:
         current_player = players[number_current_player]
 
-        position = current_player['player'].get_position(board, current_player)
+        try:
+            position = current_player['player'].get_position(
+                board,
+                current_player
+            )
+        except ExitException:
+            game_state = GAME_NO_WINNER
+            break
+
         if position < 0:
             print("Invalid position")
             continue
@@ -40,7 +50,7 @@ def start(player_one, player_two):
         print(render(board))
         print(render_score(score))
 
-    print("Winner player: " + str(game_state))
+    print(display_game_state(game_state))
 
 
 def get_complement_properties_player(number, player=None):
@@ -66,3 +76,8 @@ def play_turn(current_player, board, position, score):
         deal_position(board, position, score)
         return board, score
     return pick(current_player, board, position, score)
+
+def display_game_state(game_state):
+    if game_state == GAME_NO_WINNER:
+        return "\nNo winner, try again."
+    return "Winner player: {}.".format(game_state)
