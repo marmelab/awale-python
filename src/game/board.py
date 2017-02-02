@@ -14,7 +14,11 @@ def create_board(size):
 
 
 def can_player_apply_position(player, board, position):
-    is_empty_pit = (board[position] == 0)
+    try:
+        is_empty_pit = (board[position] == 0)
+    except IndexError:
+        return False
+
     is_player_can_move = (player['min_position'] <=
                           position <
                           player['max_position'])
@@ -22,8 +26,8 @@ def can_player_apply_position(player, board, position):
     move_possible = is_player_can_move and not is_empty_pit
 
     if sum(board[player['min_pick']:player['max_pick']]) == 0:
-        is_starving = will_starve_player(player, board, position)
-        can_feed_player = can_feed(player, board)
+        is_starving = will_starve_player(player, board, position, None)
+        can_feed_player = can_feed(player, board, None)
         return move_possible and (not is_starving or not can_feed_player)
     return move_possible
 
@@ -57,21 +61,22 @@ def pick(player, board, position, score):
     return board, score
 
 
-def will_starve_player(player, board, position):
-    pick(player, board, position)
+def will_starve_player(player, board, position, score=None):
+    pick(player, board, position, score)
     min_pick = player['min_pick']
     max_pick = player['max_pick']
     starving = (sum(board[min_pick:max_pick]) == 0)
     return starving
 
 
-def can_feed(player, board):
+def can_feed(player, board, score=None):
     min_position = player['min_position']
     max_position = player['max_position']
     cannot_feed = True
 
     for i in range(min_position, max_position):
-        cannot_feed = cannot_feed and will_starve_player(player, board, i)
+        starving = will_starve_player(player, board, i, score)
+        cannot_feed = cannot_feed and starving
 
     return not cannot_feed
 
@@ -83,7 +88,7 @@ def check_winner(player, board, position, game_state, score):
         number_player = player['number']
         starving = sum(board[min_pick:max_pick]) == 0
 
-        min_score = ((PEBBLE_COUNT * PIT_COUNT) / 2)
+        min_score = int(((PEBBLE_COUNT * PIT_COUNT) / 2))
 
         if starving or score[number_player] >= min_score:
             game_state = number_player

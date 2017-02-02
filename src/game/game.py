@@ -28,14 +28,15 @@ def start(player_one, player_two):
             print("Invalid position")
             continue
 
-        score = play_turn(current_player, board, position, score)
+        board, score = play_turn(current_player, board, position, score)
         score, game_state = check_winner(current_player, board, position,
                                          game_state, score)
         number_current_player = 1 - number_current_player
+        print(render(board))
 
     print("Result: " + score)
     print("Winner player: " + game_state)
-    
+
 
 def get_complement_properties_player(number, player=None):
     half_pit = int(PIT_COUNT / 2)
@@ -50,9 +51,7 @@ def get_complement_properties_player(number, player=None):
 
 
 def play_turn(current_player, board, position, score):
-    print("Player ({}) play {}.".format(current_player['number'], position))
-
-    if will_starve_player(current_player, board, position):
-        deal_position(board, position)
+    if will_starve_player(current_player, board, position, score):
+        deal_position(board, position, score)
     else:
         return pick(current_player, board, position, score)
