@@ -54,6 +54,14 @@ class TestBoard(unittest.TestCase):
             False
         )
 
+    def test_can_player_apply_position_starving(self):
+        board = [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]
+        player_one = get_complement_properties_player(0)
+        self.assertEqual(
+            can_player_apply_position(player_one, board, 3),
+            False
+        )
+
     def test_pick(self):
         player_one = get_complement_properties_player(0)
         player_two = get_complement_properties_player(1)

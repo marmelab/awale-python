@@ -1,5 +1,5 @@
 from .board import create_board, check_winner, game_state, GAME_CONTINUE, \
-                   deal_position, pick
+                   deal_position, pick, will_starve_player
 from .renderer import render
 from .constants import PIT_COUNT
 
@@ -45,11 +45,7 @@ def get_complement_properties_player(number, player=None):
 def play_turn(current_player, board, position):
     print("Player ({}) play {}.".format(current_player['number'], position))
 
-    if will_starve(current_player, position):
+    if will_starve_player(current_player, board, position):
         deal_position(board, position)
     else:
         pick(current_player, board, position)
-
-
-def will_starve():
-    return True  # todo next PR
