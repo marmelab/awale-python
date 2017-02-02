@@ -26,7 +26,7 @@ def can_player_apply_position(player, board, position):
     if sum(board[player['min_pick']:player['max_pick']]) == 0:
         is_starving = will_starve_player(player, board, position)
         can_feed_player = can_feed(player, board)
-        return move_possible and (not is_starving or can_feed_player)
+        return move_possible and (not is_starving or not can_feed_player)
     return move_possible
 
 
