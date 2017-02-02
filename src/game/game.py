@@ -1,6 +1,6 @@
 from .board import create_board, check_winner, deal_position, pick, \
                    GAME_CONTINUE, will_starve_player
-from .renderer import render
+from .renderer import render, render_score
 from .constants import PIT_COUNT
 
 
@@ -33,6 +33,7 @@ def start(player_one, player_two):
                                          game_state, score)
         number_current_player = 1 - number_current_player
         print(render(board))
+        print(render_score(score))
 
     print("Result: " + score)
     print("Winner player: " + game_state)
