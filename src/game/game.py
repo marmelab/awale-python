@@ -73,8 +73,8 @@ def play_turn(current_player, board, position, score):
                                   )
 
     if starving:
-        deal_position(board, position)
-        return board, score
+        end_position, new_board = deal_position(board, position)
+        return new_board, score
     return pick(current_player, board, position, score)
 
 def display_game_state(game_state):

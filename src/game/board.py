@@ -46,22 +46,22 @@ def deal_position(board, position):
             board[i % PIT_COUNT] += 1
             seeds -= 1
 
-    return i % PIT_COUNT
+    return i % PIT_COUNT, board
 
 
 def pick(player, board, position, score):
-    end_position = deal_position(board, position)
+    end_position, new_board = deal_position(board, position)
 
     def is_pick_possible(x):
         return (player['min_pick'] <= end_position < player['max_pick'] and
-                2 <= board[end_position] <= 3)
+                2 <= new_board[end_position] <= 3)
 
     while is_pick_possible(end_position):
-        score[player['number']] += board[end_position]
-        board[end_position] = 0
+        score[player['number']] += new_board[end_position]
+        new_board[end_position] = 0
         end_position -= 1
 
-    return board, score
+    return new_board, score
 
 
 def will_starve_player(player, board, position, score=[0, 0]):
