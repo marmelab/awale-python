@@ -63,7 +63,7 @@ class TestBoard(unittest.TestCase):
             False
         )
 
-        todo bug, need feed player
+        # todo bug, need feed player
         board = [0, 0, 0, 0, 0, 0, 1, 1, 1, 19, 15, 3]
         player_two = get_complement_properties_player(1)
         self.assertEqual(
