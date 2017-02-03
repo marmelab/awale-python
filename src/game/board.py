@@ -26,9 +26,12 @@ def can_player_apply_position(player, board, position):
     sum_pebble = sum(board[player['min_pick']:player['max_pick']])
 
     if sum_pebble == 0:
-        is_starving, *rest = will_starve_player(player, board, position, None)
-        can_feed_player = can_feed(player, board, None)
-        return move_possible and (not is_starving or not can_feed_player)
+        is_starving = will_starve_player(player, board, position)
+        can_feed_player = can_feed(player, board)
+
+        # todo bug, need feed player
+        # if is starving and we can feed so we feed player
+        return move_possible and (not is_starving or can_feed_player)
     return move_possible
 
 
@@ -43,39 +46,43 @@ def deal_position(board, position):
             board[i % PIT_COUNT] += 1
             seeds -= 1
 
-    return i % PIT_COUNT
+    return i % PIT_COUNT, board
 
 
 def pick(player, board, position, score):
-    end_position = deal_position(board, position)
+    end_position, new_board = deal_position(board, position)
 
     def is_pick_possible(x):
         return (player['min_pick'] <= end_position < player['max_pick'] and
-                2 <= board[end_position] <= 3)
+                2 <= new_board[end_position] <= 3)
 
     while is_pick_possible(end_position):
-        score[player['number']] += board[end_position]
-        board[end_position] = 0
+        score[player['number']] += new_board[end_position]
+        new_board[end_position] = 0
         end_position -= 1
 
-    return board, score
+    return new_board, score
 
 
-def will_starve_player(player, board, position, score=None):
-    board, score = pick(player, board, position, score)
+def will_starve_player(player, board, position, score=[0, 0]):
+    copy_board = board[:]
+    copy_score = score[:]
+    #  Fake pick to simulate next turn
+    new_board, new_score = pick(player, copy_board, position, copy_score)
+
     min_pick = player['min_pick']
     max_pick = player['max_pick']
-    starving = (sum(board[min_pick:max_pick]) == 0)
-    return starving, board, score
+    starving = (sum(new_board[min_pick:max_pick]) == 0)
+    return starving
 
 
-def can_feed(player, board, score=None):
+def can_feed(player, board, score=[0, 0]):
     min_position = player['min_position']
     max_position = player['max_position']
     cannot_feed = True
 
     for i in range(min_position, max_position):
-        starving, *rest = will_starve_player(player, board, i, score)
+        starving = will_starve_player(player, board, i, score)
         cannot_feed = cannot_feed and starving
 
     return not cannot_feed

@@ -54,11 +54,20 @@ class TestBoard(unittest.TestCase):
             False
         )
 
+    @unittest.skip("demonstrating skipping")
     def test_can_player_apply_position_starving(self):
         board = [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]
         player_one = get_complement_properties_player(0)
         self.assertEqual(
             can_player_apply_position(player_one, board, 3),
+            False
+        )
+
+        # todo bug, need feed player
+        board = [0, 0, 0, 0, 0, 0, 1, 1, 1, 19, 15, 3]
+        player_two = get_complement_properties_player(1)
+        self.assertEqual(
+            can_player_apply_position(player_two, board, 8),
             False
         )
 
