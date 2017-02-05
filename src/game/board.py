@@ -28,10 +28,7 @@ def can_player_apply_position(player, board, position):
     if sum_pebble == 0:
         is_starving = will_starve_player(player, board, position)
         can_feed_player = can_feed(player, board)
-
-        # todo bug, need feed player
-        # if is starving and we can feed so we feed player
-        return move_possible and (not is_starving or can_feed_player)
+        return move_possible and (not is_starving or not can_feed_player)
     return move_possible
 
 
@@ -79,7 +76,7 @@ def will_starve_player(player, board, position, score=[0, 0]):
 def can_feed(player, board, score=[0, 0]):
     min_position = player['min_position']
     max_position = player['max_position']
-    cannot_feed = True
+    cannot_feed = False
 
     for i in range(min_position, max_position):
         starving = will_starve_player(player, board, i, score)
