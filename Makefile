@@ -3,7 +3,7 @@
 BIN := docker run \
     -it \
     --rm \
-    -v "/src" \
+    -v "$(PWD):/app" \
     awale-python
 
 # Initialization ===============================================================
@@ -14,7 +14,7 @@ install:
 # Run ===============================================================
 
 run:
-	$(BIN) python3 src/launcher.py
+	$(BIN) python3 /app/src/launcher.py
 
 # Tests ===============================================================
 
